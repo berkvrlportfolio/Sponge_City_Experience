@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Video Consent Flow</title>
+  <title>Consent Video App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <video id="video" playsinline></video>
   <button class="skip-button" onclick="playNext()">Skip</button>
 
-  <div class="question hidden">
-    <p>Do you have consent for us to use your data?</p>
-    <button onclick="handleConsent(true)">Yes</button>
-    <button onclick="handleConsent(false)">No</button>
+  <div class="question hidden fullscreen">
+    <p>
+      Please share your personal information as well as your Instagram username.
+      We can then tag you in the video that we are producing to support spreading our experience.
+      <br/><br/>Thank you for your contribution!
+    </p>
+    <div class="button-row">
+      <button onclick="handleConsent(true)">I want to consent</button>
+      <button onclick="handleConsent(false)">I don't want to consent</button>
+    </div>
   </div>
 
-  <div class="thank-you hidden">
+  <div class="thank-you hidden fullscreen">
     <p>Thank you!</p>
   </div>
 
-  <div class="form-container hidden">
+  <div class="form-container hidden fullscreen">
     <form onsubmit="submitForm(event)">
       <label>Name:</label><input type="text" id="name" required />
       <label>Surname:</label><input type="text" id="surname" required />
