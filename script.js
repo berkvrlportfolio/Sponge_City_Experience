@@ -45,7 +45,7 @@ function submitForm(event) {
   const data = { name, surname, insta };
 
   // 🔄 Send to Google Sheets via Web App URL
-  fetch('YOUR_GOOGLE_WEB_APP_URL_HERE', {
+  fetch('https://script.google.com/macros/s/AKfycbwOeJFlQhJZ45RDrGUpUOGkLrZW7qJWLL6QDtEvZhfXOCy_R3c523b-XKbGj8Gb0k6Y/exec', {
     method: 'POST',
     mode: 'no-cors', // avoids CORS issues
     headers: {
