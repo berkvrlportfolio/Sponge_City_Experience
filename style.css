@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+video {
+  width: 100vw;
+  height: auto;
+  max-height: 100vh;
+}
+
+.skip-button, .question, .thank-you, .form-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.form-container {
+  background: black;
+  color: white;
+  padding: 20px;
+  top: 30%;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+input {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+
+button {
+  background: white;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
