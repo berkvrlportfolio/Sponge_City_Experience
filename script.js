@@ -5,7 +5,6 @@ const videos = [
   'videos/video4.mp4'
 ];
 
-
 let currentVideo = 0;
 const videoEl = document.getElementById('video');
 
@@ -43,10 +42,17 @@ function submitForm(event) {
   const surname = document.getElementById('surname').value;
   const insta = document.getElementById('insta').value;
 
-  const entry = { name, surname, insta };
-  const entries = JSON.parse(localStorage.getItem('entries') || '[]');
-  entries.push(entry);
-  localStorage.setItem('entries', JSON.stringify(entries));
+  const data = { name, surname, insta };
+
+  // 🔄 Send to Google Sheets via Web App URL
+  fetch('YOUR_GOOGLE_WEB_APP_URL_HERE', {
+    method: 'POST',
+    mode: 'no-cors', // avoids CORS issues
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
 
   resetFlow();
 }
@@ -62,4 +68,5 @@ function resetFlow() {
   }, 2000);
 }
 
+// Initial start
 playVideo(currentVideo);
