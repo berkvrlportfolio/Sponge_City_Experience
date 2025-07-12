@@ -1,12 +1,6 @@
-const videos = [
-  'videos/video1.mp4',
-  'videos/video2.mp4',
-  'videos/video3.mp4',
-  'videos/video4.mp4'
-];
-
-let currentVideo = 0;
 const videoEl = document.getElementById('video');
+const videos = ['videos/video1.mp4'];
+let currentVideo = 0;
 
 function playVideo(index) {
   videoEl.src = videos[index];
@@ -15,14 +9,10 @@ function playVideo(index) {
 }
 
 function playNext() {
-  if (currentVideo < videos.length - 1) {
-    currentVideo++;
-    playVideo(currentVideo);
-  } else {
-    videoEl.classList.add('hidden');
-    document.querySelector('.skip-button').classList.add('hidden');
-    document.querySelector('.question').classList.remove('hidden');
-  }
+  videoEl.pause();
+  videoEl.classList.add('hidden');
+  document.querySelector('.skip-button').classList.add('hidden');
+  document.querySelector('.question').classList.remove('hidden');
 }
 
 videoEl.onended = playNext;
@@ -31,6 +21,9 @@ function handleConsent(consent) {
   document.querySelector('.question').classList.add('hidden');
   if (!consent) {
     document.querySelector('.thank-you').classList.remove('hidden');
+    setTimeout(() => {
+      restartFlow();
+    }, 3000);
   } else {
     document.querySelector('.form-container').classList.remove('hidden');
   }
@@ -44,29 +37,29 @@ function submitForm(event) {
 
   const data = { name, surname, insta };
 
-  // 🔄 Send to Google Sheets via Web App URL
-  fetch('https://script.google.com/macros/s/AKfycbwOeJFlQhJZ45RDrGUpUOGkLrZW7qJWLL6QDtEvZhfXOCy_R3c523b-XKbGj8Gb0k6Y/exec', {
+  fetch('YOUR_GOOGLE_WEB_APP_URL_HERE', {
     method: 'POST',
-    mode: 'no-cors', // avoids CORS issues
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   });
 
-  resetFlow();
-}
-
-function resetFlow() {
-  currentVideo = 0;
   document.querySelector('.form-container').classList.add('hidden');
   document.querySelector('.thank-you').classList.remove('hidden');
+
   setTimeout(() => {
-    document.querySelector('.thank-you').classList.add('hidden');
-    document.querySelector('.skip-button').classList.remove('hidden');
-    playVideo(currentVideo);
-  }, 2000);
+    restartFlow();
+  }, 3000);
 }
 
-// Initial start
+function restartFlow() {
+  currentVideo = 0;
+  document.querySelector('.thank-you').classList.add('hidden');
+  document.querySelector('.skip-button').classList.remove('hidden');
+  playVideo(currentVideo);
+}
+
+// Start initially
 playVideo(currentVideo);
